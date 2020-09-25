@@ -7,7 +7,7 @@
 module.exports = {
   pages: {
     index: {
-      entry: "examples/main.js",
+      entry: "src/main.ts",
       template: "public/index.html",
       filename: "index.html"
     }
