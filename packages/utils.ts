@@ -1,12 +1,11 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 11:44
  */
-import {Coordinate} from './types'
+import { Coordinate } from './types'
 
 type Verification = (val: any) => boolean
-
 
 export const isFun: Verification = val => toRawType(val) === 'function'
 export const isBool: Verification = val => toRawType(val) === 'boolean'
@@ -34,6 +33,18 @@ export function getOffset(evt: MouseEvent, element?: Element): Coordinate {
     clientY - top
   ]
 }
+
+export function uuid(before = '', after = ''): string {
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
+  const charsLen = chars.length
+  let uuid = []
+  const len = 16
+  for (let i = 0; i < len; i++) {
+    uuid[i] = chars[0 | Math.random() * charsLen]
+  }
+  return before + uuid.join('') + after
+}
+
 
 export function addVector(vectorA: Coordinate, vectorB: Coordinate): Coordinate {
   // 向量相加
@@ -96,57 +107,4 @@ export function xAxisEqual(vectorA: Coordinate, vectorB: Coordinate): boolean {
   return vectorA[0] === vectorB[0]
 }
 
-interface Vector {
-  result: Coordinate | boolean | number
-  add: (vectorA: Coordinate, vectorB: Coordinate) => Coordinate
-  differ: (pointA: Coordinate, pointB: Coordinate) => Coordinate
-  minus: (pointA: Coordinate, pointB: Coordinate) => Coordinate
-  unitVector: (vector: Coordinate) => Coordinate
-  multiply: (vector: Coordinate, k: number) => Coordinate
-  dotProduct: (vectorA: Coordinate, vectorB: Coordinate) => number
-  cross: (vectorA: Coordinate, vectorB: Coordinate) => number
-  angle: (vector: Coordinate) => number
-  equals: (vector: Coordinate, target: Coordinate) => boolean
-  parallel: (vectorA: Coordinate, vectorB: Coordinate) => boolean
-  end: Coordinate | boolean | number
-}
 
-
-export function vector(result: Coordinate | boolean | number): object {
-  const handler: Vector = {
-    result,
-    add: addVector,
-    differ,
-    minus,
-    unitVector,
-    multiply,
-    dotProduct,
-    cross,
-    angle,
-    equals,
-    parallel,
-    get end() {
-      return this.result
-    }
-  }
-  const proxyHandler: object = {}
-  
-  Object.keys(handler).forEach(key => {
-    Object.defineProperty(proxyHandler, key, {
-      get() {
-        return function (val: Coordinate | number) {
-          result = handler[key](result, val)
-          return proxyHandler
-        }
-      }
-    })
-  })
-  
-  Object.defineProperty(proxyHandler, 'end', {
-    get() {
-      return result
-    }
-  })
-  
-  return proxyHandler
-}

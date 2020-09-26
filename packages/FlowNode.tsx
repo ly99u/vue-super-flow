@@ -1,15 +1,11 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 9:54
  */
-import Vue from 'vue'
-import {Component, Prop} from 'vue-property-decorator'
-import {
-  Coordinate,
-  ItemMeta
-} from './types'
-import {getOffset} from './utils'
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Coordinate, ItemMeta } from './types'
+import { addVector, minus } from './utils'
 
 @Component({name: 'FlowNode'})
 export default class FlowNode extends Vue {
@@ -21,57 +17,25 @@ export default class FlowNode extends Vue {
   @Prop() width!: number
   @Prop() height!: number
   
-  isDrag: boolean = false
-  isMove: boolean = false
-  
-  get position() {
-    return
+  get position(): Coordinate {
+    return addVector(this.coordinate, this.origin)
   }
   
-  created() {
-  }
-  
-  mounted() {
-    document.addEventListener('mousemove', this.move)
-    document.addEventListener('mouseup', this.up)
-    this.$once('hook:beforeDestory', () => {
-      document.removeEventListener('mousemove', this.move)
-      document.removeEventListener('mouseup', this.up)
-    })
-  }
-  
-  up(): void {
-  
-  }
-  
-  move(evt: MouseEvent): void {
-    if(this.isDrag) {
-    
-    }
-  }
-  
-  ondrag(evt: MouseEvent): void {
-    const [top, left] = getOffset(evt, this.$el)
-    this.isDrag = true
-  }
+  created() {}
   
   render() {
     return (
       <div
+        class="super-flow__node"
         style={
           {
             position: 'absolute',
-            width: `${this.width}px`,
-            height: `${this.height}px`
+            left: `${this.position[0]}px`,
+            top: `${this.position[1]}px`
           }
-        }
-        class="super-flow__node">
+        }>
         {
-          this.$scopedSlots.default
-            ? this.$scopedSlots.default({
-              ondrag: this.ondrag
-            })
-            : undefined
+          this.$slots.default
         }
       </div>
     )

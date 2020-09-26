@@ -1,10 +1,9 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 10:08
  */
-import Vue from 'vue'
-import {Component, Prop} from 'vue-property-decorator'
+import {Vue, Component, Prop} from 'vue-property-decorator'
 import {Coordinate, NodeItem, CustomId, ItemMeta} from './types'
 
 @Component({name: 'FlowLink'})

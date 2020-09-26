@@ -1,6 +1,6 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 15:08
  */
 
@@ -35,7 +35,7 @@ body {
       transition      : background .2s;
 
       &:hover {
-        box-shadow          : 0 0 16px rgba(0, 0, 0, 0.4);
+        box-shadow          : 1px 1px 16px rgba(0, 0, 0, 0.4);
         background-position : 100% 100%;
       }
     }
@@ -45,6 +45,24 @@ body {
     margin : 0 auto;
     width  : 800px;
     height : 600px;
+
+    .node-content {
+      width           : 100px;
+      height          : 80px;
+      background      : linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size : 400% 400%;
+      box-shadow      : 0 0 15px rgba(0, 0, 0, .2);
+      border-radius   : 4px;
+
+      &:hover {
+        box-shadow          : 1px 1px 16px rgba(0, 0, 0, 0.4);
+        background-position : 100% 100%;
+      }
+    }
+
+    .super-flow__node {
+
+    }
   }
 
 }

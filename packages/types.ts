@@ -1,6 +1,6 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 9:43
  */
 
@@ -13,17 +13,25 @@ export type ItemMeta = { [key: string]: any }
 export interface NodeItem {
   id: CustomId,
   coordinate: Coordinate
-  width: number
-  height: number
   meta: ItemMeta
+  
+  [key: string]: any
 }
 
 export interface LinkItem {
   id: CustomId
-  start: CustomId
-  end: CustomId
+  start: CustomId | null
+  end: CustomId | null
   startAt: Coordinate
   endAt: Coordinate
-  meta: ItemMeta
+  meta: ItemMeta,
+  
+  [key: string]: any
 }
 
+export interface SuperFlowSlotNodeProps {
+  node: NodeItem,
+  linkOutput: (evt: MouseEvent, link: LinkItem) => void
+  linkEntry: (endAt: Coordinate) => void
+  ondrag: (evt: MouseEvent) => void
+}

@@ -1,11 +1,11 @@
 /**
  * User: CHT
- * Date: 2020/9/25
+ * Date: 2020/9/26
  * Time: 9:33
  */
-import {Component, Vue} from 'vue-property-decorator'
+import { Vue, Component } from 'vue-property-decorator'
+import { LinkItem, NodeItem, SuperFlowSlotNodeProps } from '../packages/types'
 import SuperFlow from '../packages/SuperFlow'
-import {CustomId, LinkItem, NodeItem} from '../packages/types'
 import './index.less'
 
 @Component({
@@ -18,8 +18,6 @@ export default class App extends Vue {
     {
       id: 1,
       coordinate: [0, 0],
-      width: 150,
-      height: 80,
       meta: {
         a: 1,
         b: 2
@@ -28,8 +26,6 @@ export default class App extends Vue {
     {
       id: 2,
       coordinate: [0, 0],
-      width: 150,
-      height: 80,
       meta: {
         a: 1,
         b: 2
@@ -54,8 +50,6 @@ export default class App extends Vue {
     this.nodeList.push({
       id: Math.random().toString(32).substring(2),
       coordinate: [0, 0],
-      width: 150,
-      height: 80,
       meta: {
         a: 1,
         b: 2
@@ -73,14 +67,17 @@ export default class App extends Vue {
         <header>
           <button onclick={this.add}>添加</button>
           <button onclick={this.remove}>删除</button>
+          123
         </header>
         <super-flow
           nodeList={this.nodeList}
           linkList={this.linkList}
           scopedSlots={
             {
-              node: (prop: any) => (
-                <div onmousedown={prop.ondrag}>
+              node: (prop: SuperFlowSlotNodeProps) => (
+                <div
+                  class="node-content"
+                  onmousedown={prop.ondrag}>
                   {prop.node.id}
                 </div>
               )
