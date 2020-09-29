@@ -75,11 +75,14 @@ export default class App extends Vue {
           scopedSlots={
             {
               node: (prop: SuperFlowSlotNodeProps) => (
-                <div
-                  class="node-content"
-                  onmousedown={prop.ondrag}>
-                  {prop.node.id}
-                </div>
+                <template>
+                  <div
+                    class="node-content"
+                    onmousedown={prop.ondrag}>
+                    {prop.node.id}
+                  </div>
+                  
+                </template>
               )
             }
           }

@@ -70,6 +70,21 @@ export default class SuperFlow extends Vue {
     })
   }
   
+  
+  public linkOutput(link: LinkItem): void {
+    this.templateLink = link
+  }
+  
+  public linkEntry(endAt: Coordinate): void {
+    if(this.templateLink) {
+    
+    }
+  }
+  
+  public linkEnd() {
+  
+  }
+  
   protected move(evt: MouseEvent) {
     if (this.isDrag && this.dragNode) {
       this.moveNode(evt)
@@ -92,6 +107,7 @@ export default class SuperFlow extends Vue {
     this.isDrag = false
     this.dragNode = null
     this.isMove = false
+    this.templateLink = null
     this.$el.style.userSelect = 'auto'
   }
   
@@ -119,15 +135,6 @@ export default class SuperFlow extends Vue {
     this.$el.style.userSelect = 'none'
   }
   
-  protected linkEntry(endAt: Coordinate): void {
-  
-  }
-  
-  protected linkOutput(evt: MouseEvent, link: LinkItem) : void {
-    this.templateLink = link
-    evt.stopPropagation()
-    evt.preventDefault()
-  }
   
   @Watch('nodeList')
   protected convertNodeMap() {

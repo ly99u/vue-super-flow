@@ -31,7 +31,7 @@ export interface LinkItem {
 
 export interface SuperFlowSlotNodeProps {
   node: NodeItem,
-  linkOutput: (evt: MouseEvent, link: LinkItem) => void
+  linkOutput: (link: LinkItem) => void
   linkEntry: (endAt: Coordinate) => void
   ondrag: (evt: MouseEvent) => void
 }
