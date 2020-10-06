@@ -7,9 +7,9 @@
 module.exports = {
   pages: {
     index: {
-      entry: "src/main.ts",
-      template: "public/index.html",
-      filename: "index.html"
+      entry: 'src/main.ts',
+      template: 'public/index.html',
+      filename: 'index.html'
     }
   },
   lintOnSave: false,
@@ -24,5 +24,5 @@ module.exports = {
       library: 'SuperFrom',
       umdNamedDefine: true
     }
-  },
+  }
 }
