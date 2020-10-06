@@ -26,12 +26,12 @@
     "update-test": "npm run lib && npm publish --tag=beta"
   },
   "devDependencies": {
-    "core-js": "^3.6.4",
-    "vue": "^2.6.11",
     "@vue/cli-plugin-babel": "~4.3.0",
     "@vue/cli-service": "~4.3.0",
+    "core-js": "^3.6.4",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
+    "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [
